@@ -1,6 +1,7 @@
 const express = require("express")
 const { configureCors } = require("./config/corsConfig")
 const { requestLogger, addTimeStamp } = require("./middleware/customMiddleware")
+const { urlVersioning } = require("./middleware/apiVersioning")
 require("dotenv").config()
 
 const app = express()
@@ -15,6 +16,8 @@ app.use(addTimeStamp)
 
 app.use(configureCors())
 app.use(express.json())
+
+app.use("/api/v1", urlVersioning("vi"))
 
 // app.use("/api/products", productRouter)
 // app.use("/reference", bookRouter)

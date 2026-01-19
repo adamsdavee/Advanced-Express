@@ -6,11 +6,14 @@ class ApiError extends Error {
    }
 }
 
+// fn(req, res, next) is a normal middleware
+
 // Basically a function that returns another function
 const asyncHandler = (fn) => (err, req, res, next) => {
    Promise.resolve(fn(req, res, next)).catch(next)
 }
 
+// This is an error handling middleware
 const globalErrorHandler = (err, req, res, next) => {
    console.error(err.stack)
 
