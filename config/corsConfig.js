@@ -9,7 +9,8 @@ const configureCors = () => {
             "https://myCustomDomain.com", // For my production code
          ]
 
-         if (allowedOrigins.indexOf(origin) !== -1) {
+         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            console.log(`This is the origin: ${origin}`)
             callback(null, true) // giving permission that the request can be allowed
          } else {
             callback(new Error("Not allowed by cors"))

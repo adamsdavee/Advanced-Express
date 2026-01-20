@@ -9,7 +9,7 @@ class ApiError extends Error {
 // fn(req, res, next) is a normal middleware
 
 // Basically a function that returns another function
-const asyncHandler = (fn) => (err, req, res, next) => {
+const asyncHandler = (fn) => (req, res, next) => {
    Promise.resolve(fn(req, res, next)).catch(next)
 }
 
